@@ -79,8 +79,18 @@ func FibonacciSICP2(n int) int {
 	return FibonacciSICPIter(1, 0, 1, 0, n)
 }
 
+func FibonacciClosure() func() int {
+	a, b := 1, 0
+	return func() (fib int) {
+		a, b, fib = a+b, a, b
+		return
+	}
+}
+
 func main() {
+	fib := FibonacciClosure()
 	for i := 0; i < 100; i++ {
-		fmt.Println(FibonacciSICP(i))
+//		fmt.Println(FibonacciSICP(i))
+		fmt.Println(fib())
 	}
 }
